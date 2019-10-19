@@ -36,6 +36,8 @@ public class regisactivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        mDialog = new ProgressDialog(this);
+
         mail = findViewById(R.id.regem);
         pass = findViewById(R.id.regpass);
         btnreg = findViewById(R.id.regbtn);
@@ -53,14 +55,16 @@ public class regisactivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String memail = mail.getText().toString().trim();
-                String mpass = pass.getText().toString().trim();
+                String mpass = pass.getText().toString();
 
                 if(TextUtils.isEmpty(memail)){
                     mail.setError("Required Field!");
+                    return;
                 }
 
                 if(TextUtils.isEmpty(mpass)){
                     pass.setError("Required Field!");
+                    return;
                 }
 
                 mDialog.setMessage("Processing");
